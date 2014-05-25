@@ -20,6 +20,6 @@ PanPan is a futur project which will permit to send messages directly to the bro
 
 Moustash is based on Logstash :
 
-Schema
+![Moustash](docs/Moustash.jpg)
 
 The principle is to have a fast, scalable and easy to install deployment system
