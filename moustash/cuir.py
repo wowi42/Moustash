@@ -50,15 +50,12 @@ class Cuir:
          for cuir in self.cuirs:
             sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             result = sock.connect_ex((cuir["ip"],cuir["port_int"]))
-            print result
             if result != 0:
                if cuir["status"] != result:
                   moustash = Moustash(cuir["message"], ["cuir", cuir["tag"]], "cuir", cuir["tag"], cuir["ip"]+ ":" + cuir["port"], True)
-                  print moustash.json_dump()
                   self.franck.push_moustash(moustash.json_dump())
                else:
                   moustash = Moustash(cuir["message"], ["cuir", cuir["tag"]], "cuir", cuir["tag"], cuir["ip"]+ ":" + cuir["port"], False)
-                  print moustash.json_dump()
                   self.franck.push_moustash(moustash.json_dump())
                cuir["status"] = result
             sock.close()
