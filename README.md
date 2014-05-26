@@ -14,7 +14,7 @@ Fouet is an event listener for supervisor, which send a message to a broker each
 
 ##PanPan
 
-PanPan is a futur project which will permit to send messages directly to the broker through a socket
+PanPan is a cli notifier which use the same modules than Cuir and Fouet
 
 #Infrastructure
 
@@ -24,6 +24,9 @@ Moustash is based on Logstash :
 
 The principle is to have a fast, scalable and easy to install deployment system
 
+
+#Why Cuir-Moustach ?
+[![Cuir Moustache](http://img.youtube.com/vi/VunU_11xwPM/0.jpg)](http://www.youtube.com/watch?v=VunU_11xwPM)
 
 # Tips
 
