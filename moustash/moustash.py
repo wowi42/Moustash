@@ -9,12 +9,12 @@
 
 import platform
 import time
+import json
 
 class Moustash:
     def __init__(self, message, tags, type_stash, program, source, notification):
         self.moustash = {}
-        self.moustash["tags"] = []
-        self.moustash["tags"].append(tags)
+        self.moustash["tags"] = list(tags)
         self.moustash["@timestamp"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
         self.moustash["host"] = platform.node()
         self.moustash["message"] = message
@@ -22,3 +22,6 @@ class Moustash:
         self.moustash["program"] = program
         self.moustash["source"] = source
         self.moustash["notification"] = notification
+
+    def json_dump(self):
+        return json.dumps(self.moustash)
