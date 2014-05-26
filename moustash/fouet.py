@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #fouet.py for Fouet in /home/loic/GitHub/Moustash/moustash
 #
-#Made by Loïc Tosser, Findspire.com
+#Made by Loic Tosser, Findspire.com
 #Login   <loic@wowi.io>
 #
 #
