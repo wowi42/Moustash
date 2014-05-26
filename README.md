@@ -24,9 +24,41 @@ Moustash is based on Logstash :
 
 The principle is to have a fast, scalable and easy to install deployment system
 
+Right now,Moustash just support Redis, RabbitMQ wil lcome soon
 
 #Why Cuir-Moustach ?
 [![Cuir Moustache](http://img.youtube.com/vi/VunU_11xwPM/0.jpg)](http://www.youtube.com/watch?v=VunU_11xwPM)
+
+#Configuration
+
+There is a common configuration file. Because I am a BSD man, I think it's a good idea to put it in /usr/local/etc/moustash/ . But do as you want...
+
+##Moustash
+
+moustash section is the most important : it define which broker you want to, and what are there parameters
+
+* transport : can only be redis right now
+* redis_ip
+* redis_port
+* redis_db
+* redis_namespace
+
+##Cuir
+
+The configuration of Cuir section is very simple : one of the parameter need to be Interval. This interval is how many seconds you will wait between 2 probes
+
+Then you have the configuration of the probes. It's a very simple syntax :
+
+```Program: ip:port:informations```
+
+##Fouet
+
+Fouet doesn't need any parameter, except the Moustash's parameters
+
+##Panpan
+
+Panpan doesn't need any parameter too...
+
 
 # Tips
 
