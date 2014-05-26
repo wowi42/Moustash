@@ -1,6 +1,6 @@
 Moustash
 ========
-Moustash is project which permit to have a scalable notification system.
+Moustash is a project which permit to have a scalable notification system.
 Moustash is 3 parts project
 
 ##Cuir
@@ -12,16 +12,16 @@ Fouet is an event listener for supervisor, which send a message to a broker each
 ##PanPan
 PanPan is a cli notifier which use the same modules than Cuir and Fouet
 
-#Infrastructure
+##Infrastructure
 Moustash is based on Logstash :
 ![Moustash](docs/Moustash.jpg)
 The principle is to have a fast, scalable and easy to install deployment system
 Right now,Moustash just support Redis, RabbitMQ wil lcome soon
 
-#Configuration
+##Configuration
 There is a common configuration file. Because I am a BSD man, I think it's a good idea to put it in /usr/local/etc/moustash/ . But do as you want...
 
-##Moustash
+###Moustash
 moustash section is the most important : it define which broker you want to, and what are there parameters
 * transport : can only be redis right now
 * redis_ip
@@ -29,15 +29,15 @@ moustash section is the most important : it define which broker you want to, and
 * redis_db
 * redis_namespace
 
-##Cuir
+###Cuir
 The configuration of Cuir section is very simple : one of the parameter need to be Interval. This interval is how many seconds you will wait between 2 probes
 Then you have the configuration of the probes. It's a very simple syntax :
 ```Program: ip:port:informations```
 
-##Fouet
+###Fouet
 Fouet doesn't need any parameter, except the Moustash's parameters
 
-##Panpan
+###Panpan
 Panpan doesn't need any parameter too...
 
 #Why Cuir-Moustach ?
