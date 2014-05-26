@@ -20,14 +20,24 @@ class Franck:
         self.moustash_config["Cuir"] = config_section_map(self.config, "Cuir")
         if self.moustash_config["Moustash"]["transport"] == "redis":
             self.broker = self.connect_to_redis()
-            self.broker_namespace = self.moustash_config["Moustash"]["redis_namespace"]
+            redis_namespace = "moustash"
+            if "redis_namespace" in self.moustash_config["Moustash"]:
+                redis_namespace = self.moustash_config["Moustash"]["redis_namespace"]
+            self.broker_namespace = redis_namespace
         else:
             print("Not yet implemented : %s !" % moustash_config["Moustash"]["transport"])
     
     def connect_to_redis(self):
-        r = redis.StrictRedis(host=self.moustash_config["Moustash"]["redis_ip"], \
-                              port=int(self.moustash_config["Moustash"]["redis_port"]), \
-                              db=int(self.moustash_config["Moustash"]["redis_db"]))
+        redis_ip = "127.0.0.1"
+        redis_port = "6379"
+        redis_db = "0"
+        if "redis_ip" in self.moustash_config["Moustash"]:
+            redis_ip = self.moustash_config["Moustash"]["redis_ip"]
+        if "redis_port" in self.moustash_config["Moustash"]:
+            redis_port = self.moustash_config["Moustash"]["redis_port"]
+        if "redis_db" in self.moustash_config["Moustash"]:
+            redis_db = self.moustash_config["Moustash"]["redis_db"]
+        r = redis.StrictRedis(host=redis_ip, port=int(redis_port), db=int(redis_db))
         return r
 
     def push_moustash(self, json_message):
