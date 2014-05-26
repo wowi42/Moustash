@@ -30,7 +30,7 @@ def main():
    if arguments["<notification>"] == "True":
        moustash = Moustash(arguments["<message>"], ["panpan"], "panpan", arguments["<program>"], arguments["<source>"], True)
    else if arguments["<notification>"] == "False":
-       moustash = Moustash(arguments["<message>"], ["panpan"], "panpan", arguments["<program>"], arguments["<source>"], True)
+       moustash = Moustash(arguments["<message>"], ["panpan"], "panpan", arguments["<program>"], arguments["<source>"], False)
    else:
        print "arguments[\"<notification>\"] must be True or False !!!" 
    franck.push_moustash(moustash.json_dump())
