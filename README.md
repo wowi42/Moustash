@@ -30,7 +30,8 @@ moustash section is the most important : it define which broker you want to, and
 * redis_namespace
 
 ###Cuir
-The configuration of Cuir section is very simple : one of the parameter need to be Interval. This interval is how many seconds you will wait between 2 probes
+The configuration of Cuir section is very simple : one of the parameter can be Interval (Default is 5 seconds). This interval is how many seconds you will wait between 2 probes
+
 Then you have the configuration of the probes. It's a very simple syntax :
 ```Program: ip:port:informations```
 

@@ -31,6 +31,7 @@ class Cuir:
    def __init__(self, config_file):
        self.franck = Franck(config_file)
        self.cuirs = []
+       self.interval = 5
        for cuir, vache in self.franck.moustash_config["Cuir"].iteritems():
           if cuir == "interval":
              self.interval = int(vache)
