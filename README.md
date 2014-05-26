@@ -32,3 +32,6 @@ The principle is to have a fast, scalable and easy to install deployment system
 date ISO8601
 
  iso_time = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+supervisor
+processname:yaws groupname:yaws from_state:STOPPING pid:31773ver:3.0 server:supervisor serial:4 pool:fouet poolserial:4 eventname:PROCESS_STATE_STARTING len:58
