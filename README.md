@@ -18,9 +18,6 @@ Moustash is based on Logstash :
 The principle is to have a fast, scalable and easy to install deployment system
 Right now,Moustash just support Redis, RabbitMQ wil lcome soon
 
-#Why Cuir-Moustach ?
-[![Cuir Moustache](http://img.youtube.com/vi/VunU_11xwPM/0.jpg)](http://www.youtube.com/watch?v=VunU_11xwPM)
-
 #Configuration
 There is a common configuration file. Because I am a BSD man, I think it's a good idea to put it in /usr/local/etc/moustash/ . But do as you want...
 
@@ -43,6 +40,8 @@ Fouet doesn't need any parameter, except the Moustash's parameters
 ##Panpan
 Panpan doesn't need any parameter too...
 
+#Why Cuir-Moustach ?
+[![Cuir Moustache](http://img.youtube.com/vi/VunU_11xwPM/0.jpg)](http://www.youtube.com/watch?v=VunU_11xwPM)
 
 # Tips
 
