@@ -10,6 +10,7 @@
 import platform
 import time
 import json
+import ConfigParser
 
 class Moustash:
     def __init__(self, message, tags, type_stash, program, source, notification):
@@ -22,6 +23,7 @@ class Moustash:
         self.moustash["program"] = program
         self.moustash["source"] = source
         self.moustash["notification"] = notification
-
+        
     def json_dump(self):
         return json.dumps(self.moustash)
+
