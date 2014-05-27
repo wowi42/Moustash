@@ -41,7 +41,7 @@ def write_stderr(s):
 
 def main():
 #    arguments = docopt(__doc__, version='Fouet 0.1')
-    franck = Franck("moustash.ini")
+    franck = Franck("/usr/local/etc/moustash/moustash.ini")
     while 1:
         write_stdout('READY\n') # transition from ACKNOWLEDGED to READY
         line = sys.stdin.readline()  # read header line from stdin
