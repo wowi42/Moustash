@@ -19,6 +19,27 @@ The principle is to have a fast, scalable and easy to install deployment system
 Right now,Moustash just support Redis, RabbitMQ wil lcome soon
 
 ##Installation
+Just clone this repo, then create the good rep for moustash config file ```mkdir -p /usr/local/etc/moustash/```, then create your config file for moustash ```$EDITOR /usr/local/etc/moustash/moustash.ini```. You have some example in the examples folder.
+
+###Cuir
+Cuir can be easily use with supervisord :
+
+```
+[program:cuir]
+command=/usr/local/bin/python /srv/Moustash/moustash/cuir.py
+```
+
+###Fouet
+Fouet is an event listener, so he need a special config in supervisor : 
+
+```
+[eventlistener:fouet]
+command=/usr/local/bin/python /srv/Moustash/moustash/fouet.py 
+events=PROCESS_STATE
+```
+
+###Panpan
+Panpan doesn't need any installation : he is just an executable
 
 
 ##Configuration
@@ -26,11 +47,24 @@ There is a common configuration file. Because I am a BSD man, I think it's a goo
 
 ###Moustash
 moustash section is the most important : it define which broker you want to, and what are there parameters
-* transport : can only be redis right now
+* transport : can be redis or rabbitmq
+If redis
 * redis_ip
 * redis_port
 * redis_db
 * redis_namespace
+
+If RabbitMQ
+* rabbitmq_username
+* rabbitmq_password
+* rabbitmq_host
+* rabbitmq_port
+* rabbitmq_vhost
+* rabbitmq_queue
+* rabbitmq_exchange
+* rabbitmq_key
+
+__NO SSL FOR THE MOMENT WITH RABBITMQ__
 
 ###Cuir
 The configuration of Cuir section is very simple : one of the parameter can be Interval (Default is 5 seconds). This interval is how many seconds you will wait between 2 probes
