@@ -9,6 +9,7 @@
 
 import ConfigParser
 import redis
+import pika
 from utils import config_section_map
 
 class Franck:
@@ -23,15 +24,15 @@ class Franck:
             redis_parameters = {"redis_host" : "localhost", "redis_port" : "6379", "redis_db" : "0", "redis_namespace": "logstash:moustash"}
             self.fill_broker_options(redis_parameters)
             self.broker_connection = self.connect_to_redis()
-        else if self.moustash_config["Moustash"]["transport"] == "rabbitmq":
+        elif self.moustash_config["Moustash"]["transport"] == "rabbitmq":
             rabbitmq_parameters = {"rabbitmq_host" : "localhost", "rabbitmq_port": "5672",
-                                   "rabbitmq_ssl" : "0", "rabbitmq_ssl_key" = None, 
-                                   "rabbitmq_ssl_cert" = None, "rabbitmq_ssl_cacert" = None,
-                                   "rabbitmq_vhost" = "/", "rabbitmq_username" = "guest",
-                                   "rabbitmq_password" = "guest",
-                                   "rabbitmq_queue" = "logstash-queue", "rabbitmq_queue_durable" = "0",
-                                   "rabbitmq_exchange_type" = "direct", "rabbitmq_exchange_durable" = "0",
-                                   "rabbitmq_key" = "logstash-key", "rabbitmq_exchange" = "logstash-exchange"}
+                                   "rabbitmq_ssl" : "0", "rabbitmq_ssl_key" : None, 
+                                   "rabbitmq_ssl_cert" : None, "rabbitmq_ssl_cacert" : None,
+                                   "rabbitmq_vhost" : "/", "rabbitmq_username" : "guest",
+                                   "rabbitmq_password" : "guest",
+                                   "rabbitmq_queue" : "logstash-queue", "rabbitmq_queue_durable" : "0",
+                                   "rabbitmq_exchange_type" : "direct", "rabbitmq_exchange_durable" : "0",
+                                   "rabbitmq_key" : "logstash-key", "rabbitmq_exchange" : "logstash-exchange"}
             self.fill_broker_options(rabbitmq_parameters)
             self.broker_connection = self.connect_to_rabbitmq()
         else:
@@ -50,9 +51,16 @@ class Franck:
         return r
 
     def connect_to_rabbitmq(self):
-        r = redis.StrictRedis(host=self.broker["redis_ip"], port=int(self.broker["redis_port"]), db=int(self.broker["redis_db"]))
-        return r
-
+        credentials_rabbitmq = pika.PlainCredentials(self.broker["rabbitmq_username"], self.broker["rabbitmq_password"])
+        parameters_rabbitmq = pika.ConnectionParameters(host=self.broker["rabbitmq_host"], port=int(self.broker["rabbitmq_port"]),
+                                                        virtual_host=self.broker["rabbitmq_vhost"], credentials=credentials_rabbitmq)
+        connection = pika.BlockingConnection(parameters_rabbitmq)
+        channel = connection.channel()
+        channel.queue_declare(queue=self.broker["rabbitmq_queue"])
+        return channel
+        
     def push_moustash(self, json_message):
         if self.moustash_config["Moustash"]["transport"] == "redis":
-            self.broker.rpush(self.broker["redis_namespace"], json_message)
+            self.broker_connection.rpush(self.broker["redis_namespace"], json_message)
+        if self.moustash_config["Moustash"]["transport"] == "rabbitmq":
+            self.broker_connection.basic_publish(exchange=self.broker["rabbitmq_exchange"], routing_key=self.broker["rabbitmq_key"], body=json_message)

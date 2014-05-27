@@ -27,13 +27,15 @@ from transporter import Franck
 def main():
    arguments = docopt(__doc__, version='Cuir 0.1')
    franck = Franck(arguments["<file>"])
+   moustash = None
    if arguments["<notification>"] == "True":
        moustash = Moustash(arguments["<message>"], ["panpan"], "panpan", arguments["<program>"], arguments["<source>"], True)
-   else if arguments["<notification>"] == "False":
+       franck.push_moustash(moustash.json_dump())
+   elif arguments["<notification>"] == "False":
        moustash = Moustash(arguments["<message>"], ["panpan"], "panpan", arguments["<program>"], arguments["<source>"], False)
+       franck.push_moustash(moustash.json_dump())
    else:
        print "arguments[\"<notification>\"] must be True or False !!!" 
-   franck.push_moustash(moustash.json_dump())
 
 if __name__ == '__main__':
     main()
