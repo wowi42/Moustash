@@ -10,7 +10,7 @@
 """Cuir.
 
 Usage:
-  cuir <file>
+  cuir 
   cuir (-h | --help)
   cuir --version
 
@@ -28,8 +28,8 @@ import time
 import socket
 
 class Cuir:
-   def __init__(self, config_file):
-       self.franck = Franck(config_file)
+   def __init__(self):
+       self.franck = Franck()
        self.cuirs = []
        self.interval = 5
        for cuir, vache in self.franck.moustash_config["Cuir"].iteritems():
@@ -64,7 +64,7 @@ class Cuir:
 
 def main():
    arguments = docopt(__doc__, version='Cuir 0.1')
-   cuir = Cuir(arguments["<file>"])
+   cuir = Cuir()
    cuir.port_prober()
 
 if __name__ == '__main__':

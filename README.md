@@ -18,6 +18,9 @@ Moustash is based on Logstash :
 The principle is to have a fast, scalable and easy to install deployment system
 Right now,Moustash just support Redis, RabbitMQ wil lcome soon
 
+##Installation
+
+
 ##Configuration
 There is a common configuration file. Because I am a BSD man, I think it's a good idea to put it in /usr/local/etc/moustash/ . But do as you want...
 

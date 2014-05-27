@@ -7,20 +7,6 @@
 #
 #
 
-"""Fouet.
-
-Usage:
-  fouet <file>
-  fouet (-h | --help)
-  fouet --version
-
-Options:
-  -h --help     Show this screen.
-  --version     Show version.
-
-"""
-
-from docopt import docopt
 import sys
 from moustash import Moustash
 from transporter import Franck
@@ -40,8 +26,7 @@ def write_stderr(s):
     sys.stderr.flush()
 
 def main():
-#    arguments = docopt(__doc__, version='Fouet 0.1')
-    franck = Franck("/usr/local/etc/moustash/moustash.ini")
+    franck = Franck()
     while 1:
         write_stdout('READY\n') # transition from ACKNOWLEDGED to READY
         line = sys.stdin.readline()  # read header line from stdin

@@ -10,12 +10,18 @@
 import ConfigParser
 import redis
 import pika
+import os.path
+import sys
 from utils import config_section_map
 
 class Franck:
-    def __init__(self, config_file):
+    def __init__(self):
         self.config = ConfigParser.ConfigParser()
-        self.config.read(config_file)
+        if os.path.isfile("/usr/local/etc/moustash/moustash.ini") == False:
+            print "Configuration file (/usr/local/etc/moustash/moustash.ini) not found !!!"
+            print "Exit !!!"
+            sys.exit(1)
+        self.config.read("/usr/local/etc/moustash/moustash.ini")
         self.moustash_config = {}
         self.moustash_config["Moustash"] = config_section_map(self.config, "Moustash")
         self.moustash_config["Cuir"] = config_section_map(self.config, "Cuir")

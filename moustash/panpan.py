@@ -10,7 +10,7 @@
 """Panpan.
 
 Usage:
-  panpan <file> <message> <program> <source> <notification>
+  panpan <message> <program> <source> <notification>
   panpan (-h | --help)
   panpan --version
 
@@ -26,7 +26,7 @@ from transporter import Franck
 
 def main():
    arguments = docopt(__doc__, version='Cuir 0.1')
-   franck = Franck(arguments["<file>"])
+   franck = Franck()
    moustash = None
    if arguments["<notification>"] == "True":
        moustash = Moustash(arguments["<message>"], ["panpan"], "panpan", arguments["<program>"], arguments["<source>"], True)
