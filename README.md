@@ -49,20 +49,29 @@ There is a common configuration file. Because I am a BSD man, I think it's a goo
 moustash section is the most important : it define which broker you want to, and what are there parameters
 * transport : can be redis or rabbitmq
 If redis
-* redis_ip
-* redis_port
-* redis_db
-* redis_namespace
+* redis_ip : Defaults localhost.
+* redis_port : Defaults 6379.
+* redis_db : Defaults 0.
+* redis_namespace : Default logstash:moustash. Redis key namespace
 
 If RabbitMQ
-* rabbitmq_username
-* rabbitmq_password
-* rabbitmq_host
-* rabbitmq_port
-* rabbitmq_vhost
-* rabbitmq_queue
-* rabbitmq_exchange
-* rabbitmq_key
+* rabbitmq_host: Defaults localhost. Host for RabbitMQ
+* rabbitmq_port: Defaults 5672. Port for RabbitMQ
+* rabbitmq_vhost: Default /
+* rabbitmq_username: Default guest
+* rabbitmq_password: Default guest
+* rabbitmq_queue: Default logstash-queue.
+* rabbitmq_key: Default logstash-key.
+* rabbitmq_exchange: Default logstash-exchange.
+
+For the future :
+* rabbitmq_ssl: Defaults 0. Connect using SSL/TLS
+* rabbitmq_ssl_key: Optional. Defaults None. Path to client private key for SSL/TLS
+* rabbitmq_ssl_cert: Optional. Defaults None. Path to client certificate for SSL/TLS
+* rabbitmq_ssl_cacert: Optional. Defaults None. Path to CA certificate for SSL/TLS
+* rabbitmq_queue_durable: Default 0.
+* rabbitmq_exchange_type: Default direct.
+* rabbitmq_exchange_durable: Default 0.
 
 __NO SSL FOR THE MOMENT WITH RABBITMQ__
 
