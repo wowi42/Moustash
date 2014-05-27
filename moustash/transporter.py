@@ -24,6 +24,18 @@ class Franck:
             if "redis_namespace" in self.moustash_config["Moustash"]:
                 redis_namespace = self.moustash_config["Moustash"]["redis_namespace"]
             self.broker_namespace = redis_namespace
+        else if self.moustash_config["Moustash"]["transport"] == "rabbitmq":
+            self.broker = {}
+            rabbitmq_parameters = {"rabbitmq_host" : "localhost", "rabbitmq_port": "5672", "rabbitmq_ssl" : "0", "rabbitmq_ssl_key" = None, 
+                                   "rabbitmq_ssl_cert" = None, "rabbitmq_ssl_cacert" = None, "rabbitmq_vhost" = "/", "rabbitmq_username" = "guest",
+                                   "rabbitmq_password" = "guest", "rabbitmq_queue" = "logstash-queue", "rabbitmq_queue_durable" = "0",
+                                   "rabbitmq_exchange_type" = "direct", "rabbitmq_exchange_durable" = "0", "rabbitmq_key" = "logstash-key",
+                                   "rabbitmq_exchange" = "logstash-exchange"}
+            for rabbitmq_options, rabbitmq_options_value in rabbitmq_parameters.iteritems():
+                if rabbitmq_options in self.moustash_config["Moustash"]:
+                    self.broker[rabbitmq_options] = self.moustash_config["Moustash"][rabbitmq_options]
+                else:
+                    self.broker[rabbitmq_options] = rabbitmq_options_value
         else:
             print("Not yet implemented : %s !" % moustash_config["Moustash"]["transport"])
     
