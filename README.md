@@ -48,6 +48,7 @@ There is a common configuration file. Because I am a BSD man, I think it's a goo
 ###Moustash
 moustash section is the most important : it define which broker you want to, and what are there parameters
 * transport : can be redis or rabbitmq
+
 If redis
 * redis_ip : Defaults localhost.
 * redis_port : Defaults 6379.
