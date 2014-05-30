@@ -53,7 +53,7 @@ class Franck:
                 self.broker[option_name] = option_value
 
     def connect_to_redis(self):
-        r = redis.StrictRedis(host=self.broker["redis_ip"], port=int(self.broker["redis_port"]), db=int(self.broker["redis_db"]))
+        r = redis.StrictRedis(host=self.broker["redis_host"], port=int(self.broker["redis_port"]), db=int(self.broker["redis_db"]))
         return r
 
     def connect_to_rabbitmq(self):
