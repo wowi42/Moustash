@@ -22,7 +22,8 @@ class Moustash:
         self.moustash["type"] = type_stash
         self.moustash["program"] = program
         self.moustash["source"] = source
-        self.moustash["notification"] = notification
+        if notification == True:
+            self.moustash["tags"].append("notification")
         
     def json_dump(self):
         return json.dumps(self.moustash)
