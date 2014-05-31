@@ -19,7 +19,7 @@ The principle is to have a fast, scalable and easy to install deployment system
 Right now,Moustash just support Redis, RabbitMQ wil lcome soon
 
 ##Installation
-Just clone this repo, then create the good rep for moustash config file ```mkdir -p /usr/local/etc/moustash/```, then create your config file for moustash ```$EDITOR /usr/local/etc/moustash/moustash.ini```. You have some example in the examples folder.
+Just clone this repo, then create the good rep for moustash config file ```mkdir -p /usr/local/etc/moustash/```, then create your config file for moustash ```$EDITOR /usr/local/etc/moustash/moustash.ini```. You have some examples in the examples folder.
 
 ###Cuir
 Cuir can be easily use with supervisord :
