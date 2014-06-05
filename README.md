@@ -55,7 +55,6 @@ If redis
 * redis_db : Defaults 0.
 * redis_namespace : Default logstash:moustash. Redis key namespace
 
-DONT USE IT WITH RABBITMQ IN PRODUCTION !!!
 If RabbitMQ
 * rabbitmq_host: Defaults localhost. Host for RabbitMQ
 * rabbitmq_port: Defaults 5672. Port for RabbitMQ

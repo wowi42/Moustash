@@ -62,7 +62,9 @@ class Franck:
                                                         virtual_host=self.broker["rabbitmq_vhost"], credentials=credentials_rabbitmq)
         connection = pika.BlockingConnection(parameters_rabbitmq)
         channel = connection.channel()
-        channel.queue_declare(queue=self.broker["rabbitmq_queue"])
+        channel.queue_declare(queue=self.broker["rabbitmq_queue"], durable=self.broker["rabbitmq_queue_durable"])
+        channel.exchange_declare(exchange=self.broker["rabbitmq_exchange"], exchange_type=self.broker["rabbitmq_exchange_type"], durable=self.broker["rabbitmq_exchange_durable"])
+        channel.queue_bind(exchange=self.broker["rabbitmq_exchange"], queue=self.broker["rabbitmq_queue"], routing_key=self.broker["rabbitmq_key"])
         return channel
         
     def push_moustash(self, json_message):
